@@ -18,7 +18,7 @@ public class Mage {
     String getInfo(){
         return (this.name + ", " + this.level + ", " + this.damage + ", " + this.type);
     }
-    //test comment
+    //test comment 2
     String fight(Mage mage) {
         // проверяем все возможные ситуации
         if (this.type.equals("fire") && mage.type.equals("ice")) return this.name;
