@@ -1,6 +1,6 @@
 public class TicTacToe {
     private char[][] field;
-
+//test comment for testing merge
     public TicTacToe(char[][] field) {
         this.field = field;
     }
