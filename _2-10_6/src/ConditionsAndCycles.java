@@ -1,21 +1,21 @@
 public class ConditionsAndCycles {
     public static void main(String[] args) {
         int a = 4, b = 3, c = 2;
-        b = b + c;
+        b = b + c; //5
         //a = a * b;
-        c = a - c;
+        c = a - c; //2
         //a = a + b;
-        a = a - b;
-        c = a + b;
+        a = a - b; //-1
+        c = a + b; //4
         //b = c / a;
-        a = b + c;
-        a = a + c + b;
+        a = b + c; // 9
+        a = a + c + b; //18
 
         // Напишите здесь свой кодs
         int i = 1;
         do {
-            i++;
             System.out.println(i + " " + a);
-        } while (i < 20);
+            i++;
+        } while (i <= 20);
     }
 }
