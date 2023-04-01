@@ -11,7 +11,7 @@ public class ConditionsAndCycles {
         a = b + c;
         a = a + c + b;
 
-        // Напишите здесь свой код
+        // Напишите здесь свой кодs
         int i = 1;
         do {
             i++;
