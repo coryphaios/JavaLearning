@@ -3,15 +3,19 @@ public class Vector3D extends Vector{
         super(x1, y1, x2, y2, z1, z2);
     }
 
-    public double getLength(){
-        return Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2) + Math.pow(z1, 2));
+    public double getLength() {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2));
     }
 
-    public String getVectorCords(){
-        return x1 + " " + y1 + " " + z1;
-    }
+    public String getVectorCords() { return (x2 - x1) + " " + (y2 - y1) + " " + (z2 - z1); }
 
-    public double getScalarProduct(Vector3D vector){
-        return x1 * x2 + y1 * y2 + z1 * z2;
+
+    public double getScalarProduct (Vector3D vector3D) { // take cords first and second vectors and search scalar product
+            String cords = getVectorCords();
+            String cords2 = vector3D.getVectorCords();
+            int a = Integer.parseInt(cords.split( " ")[0]) + Integer.parseInt(cords2.split( " ")[0]);
+            int b = Integer.parseInt(cords2.split( " ")[1]) + Integer.parseInt(cords.split( " ")[1]);
+            int c = Integer.parseInt(cords.split(" ") [2]) + Integer.parseInt(cords2.split( " ")[2]);
+            return a + b + c;
     }
 }
