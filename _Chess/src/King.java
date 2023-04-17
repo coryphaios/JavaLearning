@@ -13,7 +13,7 @@ public class King extends ChessPiece {
 
         if (toLine >= 0 && toLine <= 7){
             if (toColumn >= 0 && toColumn <= 7){
-                if (((abs(toLine - line) <= 1) && (abs(toColumn - column) <= 1)) && ((abs(toLine - line) != 0) && (abs(toColumn - column) != 0))){
+                if (((abs(toLine - line) <= 1) && (abs(toColumn - column) <= 1)) && !((abs(toLine - line) == 0) && (abs(toColumn - column) == 0))){
                     return true;
                 }
                 return false;
