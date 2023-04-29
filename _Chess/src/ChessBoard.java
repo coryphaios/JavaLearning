@@ -12,19 +12,19 @@ public class ChessBoard {
 
     public boolean moveToPosition(int startLine, int startColumn, int endLine, int endColumn) {
         if (checkPos(startLine) && checkPos(startColumn)) {
-            if ((startLine == 0 && startColumn == 0) || (startLine == 0 && startColumn == 4)){
+            if ((startLine == 0 && startColumn == 0) || (startLine == 0 && startColumn == 4)){ // first move of white rook or king
                 board[0][0].check = false;
                 board[0][4].check = false;
             }
-            if ((startLine == 0 && startColumn == 7) || (startLine == 0 && startColumn == 4)){
+            if ((startLine == 0 && startColumn == 7) || (startLine == 0 && startColumn == 4)){ // first move of white rook or king
                 board[0][7].check = false;
                 board[0][4].check = false;
             }
-            if ((startLine == 7 && startColumn == 0) || (startLine == 7 && startColumn == 4)){
+            if ((startLine == 7 && startColumn == 0) || (startLine == 7 && startColumn == 4)){ // first move of black rook or king
                 board[7][0].check = false;
                 board[7][4].check = false;
             }
-            if ((startLine == 7 && startColumn == 7) || (startLine == 7 && startColumn == 4)){
+            if ((startLine == 7 && startColumn == 7) || (startLine == 7 && startColumn == 4)){ // first move of black rook or king
                 board[7][7].check = false;
                 board[7][4].check = false;
             }
@@ -32,6 +32,15 @@ public class ChessBoard {
             if (!nowPlayer.equals(board[startLine][startColumn].getColor())) return false;
 
             if (board[startLine][startColumn].canMoveToPosition(this, startLine, startColumn, endLine, endColumn)) {
+                if (board[endLine][endColumn] != null) {
+                    board[endLine][endColumn] = null;
+                }
+
+                if (board[startLine][startColumn].getSymbol().equals("K") ||  // check position for castling
+                        board[startLine][startColumn].getSymbol().equals("R")) {
+                    board[startLine][startColumn].check = false;
+                }
+
                 board[endLine][endColumn] = board[startLine][startColumn]; // if piece can move, we moved a piece
                 board[startLine][startColumn] = null; // set null to previous cell
                 this.nowPlayer = this.nowPlayerColor().equals("White") ? "Black" : "White";

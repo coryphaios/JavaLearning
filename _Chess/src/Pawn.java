@@ -13,10 +13,10 @@ public class Pawn extends ChessPiece{
         if (line != toLine) {
             if (toLine >= 0 && toLine <= 7) {
                 if ((toColumn >= 0 && toColumn <= 7) && (toColumn == column)) {
-                    if (((color == "White") && ((toLine - line) == 1)) || (((color == "White") && (line == 1)) && (toLine - line == 2))) {
+                    if (((color.equals("White")) && ((toLine - line) == 1)) || (((color.equals("White")) && (line == 1)) && (toLine - line == 2))) {
                         return true;
                     }
-                    else if (((color == "Black") && ((line - toLine) == 1)) || (((color == "Black") && (line == 6)) && (line - toLine == 2))) {
+                    else if (((color.equals("Black")) && ((line - toLine) == 1)) || (((color.equals("Black")) && (line == 6)) && (line - toLine == 2))) {
                         return true;
                     }
                     return false;

@@ -11,20 +11,85 @@ public class Queen extends ChessPiece {
 
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
 
-        if (toLine >= 0 && toLine <= 7){
-            if (toColumn >= 0 && toColumn <= 7){
-                if (((toLine != line) && (toColumn == column)) || ((toLine == line) && (toColumn != column)) ||
-                        ((abs(toLine - line) == abs(toColumn - column)) && (line != toLine && column != toColumn))) {
-                    return true;
+        if (toLine >= 0 && toLine <= 7) {
+            if (toColumn >= 0 && toColumn <= 7) {
+                if ((chessBoard.board[toLine][toColumn] == null) || !((chessBoard.board[toLine][toColumn].getColor()).equals(chessBoard.board[line][column].getColor()))) {
+                    if (((toLine != line) && (toColumn == column)) || ((toLine == line) && (toColumn != column)) ||
+                            ((abs(toLine - line) == abs(toColumn - column)) && (line != toLine && column != toColumn))) {
+                        if (toLine == line && toColumn > column) { //condition for right direction on the same line
+                            for (int i = column + 1; i < toColumn; i++) {
+                                if (chessBoard.board[line][i] != null) { // free square check
+                                    return false;
+                                }
+                            }
+                            return true;
+                        } else if (toLine == line && toColumn < column) { //condition for left direction on the same line
+                            for (int i = column - 1; i > toColumn; i--) {
+                                if (chessBoard.board[line][i] != null) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        } else if (toColumn == column && toLine > line) { //condition for forward direction on the same column
+                            for (int i = line + 1; i < toLine; i++) {
+                                if (chessBoard.board[i][column] != null) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        } else if (toColumn == column && toLine < line) { //condition for backward direction on the same column
+                            for (int i = line - 1; i > toLine; i--) {
+                                if (chessBoard.board[i][column] != null) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        } else if ((toLine > line) && (toColumn > column)) {
+                            int j = column + 1;
+                            for (int i = line + 1; i < toLine; i++) {
+                                if (chessBoard.board[i][j] != null) {
+                                    return false;
+                                }
+                                j++;
+                            }
+                            return true;
+                        } else if ((toLine > line) && (toColumn < column)) {
+                            int j = column - 1;
+                            for (int i = line + 1; i < toLine; i++) {
+                                if (chessBoard.board[i][j] != null) {
+                                        return false;
+                                }
+                                j--;
+                            }
+                            return true;
+                        } else if ((toLine < line) && (toColumn > column)) {
+                            int j = column + 1;
+                            for (int i = line - 1; i > toLine; i--) {
+                                if (chessBoard.board[i][j] != null) {
+                                    return false;
+                                }
+                                j++;
+                            }
+                            return true;
+                        } else if ((toLine < line) && (toColumn < column)) {
+                            int j = column - 1;
+                            for (int i = line - 1; i > toLine; i--) {
+                                if (chessBoard.board[i][j] != null) {
+                                    return false;
+                                }
+                                j--;
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
                 return false;
             }
             return false;
         }
-
-        else {
-            return false;
-        }
+        return false;
     }
 
     public String getSymbol() {
