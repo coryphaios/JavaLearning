@@ -14,7 +14,10 @@ public class King extends ChessPiece {
         if (toLine >= 0 && toLine <= 7){
             if (toColumn >= 0 && toColumn <= 7){
                 if (((abs(toLine - line) <= 1) && (abs(toColumn - column) <= 1)) && !((abs(toLine - line) == 0) && (abs(toColumn - column) == 0))){
-                    return true;
+                    if ((chessBoard.board[toLine][toColumn] == null) || !((chessBoard.board[toLine][toColumn].getColor()).equals(chessBoard.board[line][column].getColor()))){
+                        return true;
+                    }
+                    return false;
                 }
                 return false;
             }
