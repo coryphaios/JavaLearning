@@ -2,6 +2,7 @@ public class ChessBoard {
     public ChessPiece[][] board = new ChessPiece[8][8]; // creating a field for game
     String nowPlayer;
 
+
     public ChessBoard(String nowPlayer) {
         this.nowPlayer = nowPlayer;
     }
@@ -30,6 +31,22 @@ public class ChessBoard {
             }
 
             if (!nowPlayer.equals(board[startLine][startColumn].getColor())) return false;
+
+//            if (new King(nowPlayerColor()).isUnderAttack(this, startLine, endColumn)) return false;
+
+//            for (int i = 0; i <= 7; i++){
+//                for (int j = 0; j <= 7; j++){
+//                    if (board[i][j].getSymbol().equals("K")) {
+//                        System.out.println(i + " " + j);
+//                        if (new King(nowPlayerColor()).isUnderAttack(this, i, j)) {
+//                            System.out.println("false");
+//                            return false;
+//                        }
+//                        System.out.println("true");
+//                    }
+//                }
+//            }
+//            System.out.println("Ready for move");
 
             if (board[startLine][startColumn].canMoveToPosition(this, startLine, startColumn, endLine, endColumn)) {
                 if (board[endLine][endColumn] != null) {
