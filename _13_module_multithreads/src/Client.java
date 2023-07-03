@@ -2,21 +2,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class EchoServer {
-    public static void main(String[] args) throws IOException {
-        // создаем серверный сокет на порту 1234
-        ServerSocket server = new ServerSocket(1234);
-        while (true) {
-            System.out.println("Waiting...");
+class Client implements Runnable {
+    Socket socket;
 
-            // ждем клиента
-            Socket socket = server.accept();
-            System.out.println("Client connected!");
+    public Client(Socket socket){
 
+        this.socket = socket;
+    }
+
+    public void run() {
+        try {
             // получаем потоки ввода и вывода
             InputStream is = socket.getInputStream();
             OutputStream os = socket.getOutputStream();
@@ -34,6 +32,8 @@ public class EchoServer {
                 input = in.nextLine();
             }
             socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
